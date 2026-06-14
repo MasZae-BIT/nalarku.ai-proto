@@ -104,7 +104,8 @@
     .phone-screen {
         width: 100%;
         height: 100%;
-        background: #ffffff;
+        /* PERBAIKAN: Ubah background putih menjadi warna background aplikasi asli agar garis putih hilang */
+        background: #0b0d18; 
         border-radius: 32px;
         overflow: hidden;
         position: relative;
@@ -1405,7 +1406,7 @@ button,input,textarea,select{font-family:'Plus Jakarta Sans',sans-serif;}
         <div class="ob-chips" id="ob-dur-chips">
           <button class="ob-chip" onclick="selectChip('ob-dur-chips',this,'dur')">15 menit</button>
           <button class="ob-chip" onclick="selectChip('ob-dur-chips',this,'dur')">30 menit</button>
-          <button class="ob-chip" onclick="selectChip('ob-dur-chips',this,'dur')">1 jam</button>
+          <button class="ob-chip" onclick="selectChip('ob-dur-chips',this || {} ,this,'dur')">1 jam</button>
           <button class="ob-chip" onclick="selectChip('ob-dur-chips',this,'dur')">2+ jam</button>
         </div>
       </div>
@@ -1460,7 +1461,7 @@ button,input,textarea,select{font-family:'Plus Jakarta Sans',sans-serif;}
           Kembali
         </button>
         <button class="ob-btn-next" onclick="finishOnboard()">
-          Selesai & Simpan
+          Selesai & Mulai Belajar
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
       </div>
@@ -1473,8 +1474,8 @@ button,input,textarea,select{font-family:'Plus Jakarta Sans',sans-serif;}
         <p id="ob-welcome-sub">Profil kamu sudah siap. Nala AI akan mempelajari pola belajarmu dari sekarang.</p>
         <div id="ob-summary"></div>
         <button class="ob-btn-next" style="margin-top:20px;max-width:300px;margin-left:auto;margin-right:auto" onclick="goToDashboard()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          Masuk ke Dashboard
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Mulai Belajar
         </button>
       </div>
     </div>
@@ -1647,7 +1648,6 @@ button,input,textarea,select{font-family:'Plus Jakarta Sans',sans-serif;}
       </div>
       <div class="f-pill">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        Gamifikasi
       </div>
       <div class="f-pill">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -1657,7 +1657,7 @@ button,input,textarea,select{font-family:'Plus Jakarta Sans',sans-serif;}
 
     <div class="login-hero">
       <h1>Selamat Datang<br>di Nalarku.ai</h1>
-      <p>Platform belajar cerdas yang memahami kamu — kapan belajar, apa yang perlu diulang, dan bagaimana cara terbaik untukmu.</p>
+      <p>Platform belajar cerdas yang memahami kamu — kapan belajar, apa yang perlu diulang, and bagaimana cara terbaik untukmu.</p>
     </div>
 
     <div class="login-tabs">
@@ -1956,7 +1956,7 @@ button,input,textarea,select{font-family:'Plus Jakarta Sans',sans-serif;}
           </div>
           <div class="chat-hdr-btns">
             <div class="chat-hdr-btn" onclick="showToast('Riwayat chat disimpan')">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </div>
             <div class="chat-hdr-btn" onclick="clearChat()">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.95"/></svg>
@@ -2135,23 +2135,25 @@ const API = 'https://api.anthropic.com/v1/messages';
 // ── SPLASH ──
 setTimeout(() => {
   const s = document.getElementById('splash');
-  s.style.transition = 'opacity .35s'; s.style.opacity = '0';
-  setTimeout(() => {
-    s.style.display = 'none';
-    // Menampilkan halaman login terlebih dahulu sesuai permintaan (Loading -> Login)
-    if (localStorage.getItem('nk_ob_done') && localStorage.getItem('nk_logged_in')) {
-      showPage('pg-app');
-      initApp();
-    } else {
-      showPage('pg-login');
-    }
-  }, 350);
+  if (s) {
+    s.style.transition = 'opacity .35s'; s.style.opacity = '0';
+    setTimeout(() => {
+      s.style.display = 'none';
+      if (localStorage.getItem('nk_ob_done') && localStorage.getItem('nk_logged_in')) {
+        showPage('pg-app');
+        initApp();
+      } else {
+        showPage('pg-login');
+      }
+    }, 350);
+  }
 }, 2400);
 
 // ── PAGE ──
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('show'));
-  document.getElementById(id).classList.add('show');
+  const target = document.getElementById(id);
+  if (target) target.classList.add('show');
   window.scrollTo(0,0);
 }
 
@@ -2163,15 +2165,20 @@ let currentObStep = 1;
 
 function obNext(step) {
   if (step === 1) {
-    const nick = document.getElementById('ob-nickname').value.trim();
+    const nickIn = document.getElementById('ob-nickname');
+    const nick = nickIn ? nickIn.value.trim() : '';
     if (!nick) { shakeEl('ob-s1'); showToast('Masukkan nama panggilanmu dulu ya!', true); return; }
     obData.nickname = nick;
-    obData.age = document.getElementById('ob-age').value;
+    const ageIn = document.getElementById('ob-age');
+    obData.age = ageIn ? ageIn.value : '';
   }
   if (step === 2) {
-    obData.level = document.getElementById('ob-level').value;
-    obData.school = document.getElementById('ob-school').value.trim();
-    obData.city = document.getElementById('ob-city').value.trim();
+    const levIn = document.getElementById('ob-level');
+    obData.level = levIn ? levIn.value : '';
+    const schIn = document.getElementById('ob-school');
+    obData.school = schIn ? schIn.value.trim() : '';
+    const citIn = document.getElementById('ob-city');
+    obData.city = citIn ? citIn.value.trim() : '';
   }
   if (step === 3) {
     obData.styles = [...document.querySelectorAll('#ob-style-chips .ob-chip.sel')].map(c=>c.textContent.trim());
@@ -2179,19 +2186,22 @@ function obNext(step) {
   currentObStep = step + 1;
   updateObProgress(currentObStep);
   document.querySelectorAll('.ob-screen').forEach(s => s.classList.remove('show'));
-  document.getElementById('ob-s' + currentObStep).classList.add('show');
+  const nextS = document.getElementById('ob-s' + currentObStep);
+  if (nextS) nextS.classList.add('show');
 }
 
 function obBack(step) {
   currentObStep = step - 1;
   updateObProgress(currentObStep);
   document.querySelectorAll('.ob-screen').forEach(s => s.classList.remove('show'));
-  document.getElementById('ob-s' + currentObStep).classList.add('show');
+  const backS = document.getElementById('ob-s' + currentObStep);
+  if (backS) backS.classList.add('show');
 }
 
 function updateObProgress(step) {
   const labels = ['','Langkah 1 / 4','Langkah 2 / 4','Langkah 3 / 4','Langkah 4 / 4','Selesai!'];
-  document.getElementById('ob-stepnum').textContent = labels[step] || '';
+  const stepNum = document.getElementById('ob-stepnum');
+  if (stepNum) stepNum.textContent = labels[step] || '';
   for (let i = 1; i <= 4; i++) {
     const el = document.getElementById('op'+i);
     if (!el) continue;
@@ -2202,57 +2212,71 @@ function updateObProgress(step) {
 }
 
 function selectChip(groupId, el, key) {
-  document.querySelectorAll('#'+groupId+' .ob-chip').forEach(c => c.classList.remove('sel'));
-  el.classList.add('sel');
-  obData[key] = el.textContent.trim();
+  const container = document.getElementById(groupId);
+  if (container) {
+    container.querySelectorAll('.ob-chip').forEach(c => c.classList.remove('sel'));
+  }
+  if (el) {
+    el.classList.add('sel');
+    obData[key] = el.textContent.trim();
+  }
 }
 
 function toggleChip(el) {
-  el.classList.toggle('sel');
+  if (el) el.classList.toggle('sel');
 }
 
 function pickAvatar(el) {
-  document.querySelectorAll('#ob-avatars .ob-avatar-opt').forEach(a => a.classList.remove('sel'));
-  el.classList.add('sel');
-  obData.avatar = el.dataset.val;
+  const container = document.getElementById('ob-avatars');
+  if (container) {
+    container.querySelectorAll('.ob-avatar-opt').forEach(a => a.classList.remove('sel'));
+  }
+  if (el) {
+    el.classList.add('sel');
+    obData.avatar = el.dataset.val;
+  }
 }
 
-function updateGreeting() {
-  // no-op for now
-}
+function updateGreeting() {}
 
 function finishOnboard() {
-  obData.motivation = document.getElementById('ob-motivation').value;
-  obData.goal = [...document.querySelectorAll('#ob-goal-chips .ob-chip.sel')].map(c=>c.textContent.trim()).join('') || 'Tambah skill baru';
+  const motIn = document.getElementById('ob-motivation');
+  obData.motivation = motIn ? motIn.value : '';
+  const goalIn = document.querySelector('#ob-goal-chips .ob-chip.sel');
+  obData.goal = goalIn ? goalIn.textContent.trim() : 'Tambah skill baru';
 
-  // Save to localStorage
   localStorage.setItem('nk_ob_done', '1');
   localStorage.setItem('nk_profile', JSON.stringify(obData));
 
-  // Show welcome screen
   const welcomeAva = document.getElementById('ob-welcome-ava');
-  welcomeAva.textContent = obData.avatar || obData.nickname[0]?.toUpperCase() || 'M';
-  document.getElementById('ob-welcome-title').textContent = `Hai, ${obData.nickname || 'Kamu'}! 👋`;
-  document.getElementById('ob-welcome-sub').textContent = `Profilmu sudah tersimpan. Nala AI siap menemani perjalanan belajarmu!`;
-
+  if (welcomeAva) {
+    welcomeAva.textContent = obData.avatar || obData.nickname[0]?.toUpperCase() || 'M';
+  }
+  const welcomeTitle = document.getElementById('ob-welcome-title');
+  if (welcomeTitle) {
+    welcomeTitle.textContent = `Hai, ${obData.nickname || 'Kamu'}! 👋`;
+  }
   const sum = document.getElementById('ob-summary');
-  const rows = [
-    ['Nama', obData.nickname || '—'],
-    ['Usia', obData.age ? obData.age + ' tahun' : '—'],
-    ['Institusi', obData.school || '—'],
-    ['Kota', obData.city || '—'],
-    ['Tujuan', obData.goal || '—'],
-  ];
-  sum.innerHTML = rows.map(([k,v])=>`
-    <div class="ob-info-row">
-      <div class="ob-info-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div style="flex:1"><div class="ob-info-key">${k}</div><div class="ob-info-val">${v}</div></div>
-    </div>`).join('');
+  if (sum) {
+    const rows = [
+      ['Nama', obData.nickname || '—'],
+      ['Usia', obData.age ? obData.age + ' tahun' : '—'],
+      ['Institusi', obData.school || '—'],
+      ['Kota', obData.city || '—'],
+      ['Tujuan', obData.goal || '—'],
+    ];
+    sum.innerHTML = rows.map(([k,v])=>`
+      <div class="ob-info-row">
+        <div class="ob-info-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div style="flex:1"><div class="ob-info-key">${k}</div><div class="ob-info-val">${v}</div></div>
+      </div>`).join('');
+  }
 
   currentObStep = 5;
   updateObProgress(5);
   document.querySelectorAll('.ob-screen').forEach(s => s.classList.remove('show'));
-  document.getElementById('ob-s5').classList.add('show');
+  const finalS = document.getElementById('ob-s5');
+  if (finalS) finalS.classList.add('show');
 }
 
 function goToDashboard() {
@@ -2263,8 +2287,10 @@ function goToDashboard() {
 
 function shakeEl(id) {
   const el = document.getElementById(id);
-  el.style.animation = 'none';
-  setTimeout(() => { el.style.animation = ''; }, 10);
+  if (el) {
+    el.style.animation = 'none';
+    setTimeout(() => { el.style.animation = ''; }, 10);
+  }
 }
 
 // ── LOGIN ──
@@ -2272,43 +2298,42 @@ let activeTab = 'masuk';
 function setTab(t) {
   activeTab = t;
   document.querySelectorAll('.login-tab').forEach((el,i) => el.classList.toggle('active', (i===0&&t==='masuk')||(i===1&&t==='daftar')));
-  document.getElementById('form-masuk').style.display = t==='masuk'?'block':'none';
-  document.getElementById('form-daftar').style.display = t==='daftar'?'block':'none';
+  const formIn = document.getElementById('form-masuk');
+  if (formIn) formIn.style.display = t==='masuk'?'block':'none';
+  const formUp = document.getElementById('form-daftar');
+  if (formUp) formUp.style.display = t==='daftar'?'block':'none';
 }
 function togglePass() {
   const inp = document.getElementById('pass-in');
-  inp.type = inp.type==='password' ? 'text' : 'password';
+  if (inp) inp.type = inp.type==='password' ? 'text' : 'password';
 }
 function doLogin() {
-  // Munculkan Splash kembali setelah klik login (Login -> Loading)
   const s = document.getElementById('splash');
-  s.style.display = 'flex';
-  s.style.opacity = '1';
-  s.style.transition = 'none';
-  
-  // Restart animasi bar oren
-  const fill = document.querySelector('.splash-fill');
-  fill.style.animation = 'none';
-  void fill.offsetWidth;
-  fill.style.animation = 'sfill 2.2s ease forwards';
-
-  // Lanjut setelah animasi loading
-  setTimeout(() => {
-    s.style.transition = 'opacity .35s';
-    s.style.opacity = '0';
+  if (s) {
+    s.style.display = 'flex';
+    s.style.opacity = '1';
+    s.style.transition = 'none';
+    const fill = s.querySelector('.splash-fill');
+    if (fill) {
+      fill.style.animation = 'none';
+      void fill.offsetWidth;
+      fill.style.animation = 'sfill 2.2s ease forwards';
+    }
     setTimeout(() => {
-      s.style.display = 'none';
-      // Hapus history lama agar selalu muncul pertanyaan setelah klik login saat testing
-      localStorage.removeItem('nk_ob_done'); 
-      
-      // Masuk Onboarding (Loading -> Pertanyaan)
-      currentObStep = 1;
-      updateObProgress(1);
-      document.querySelectorAll('.ob-screen').forEach(el => el.classList.remove('show'));
-      document.getElementById('ob-s1').classList.add('show');
-      showPage('pg-onboard');
-    }, 350);
-  }, 2400);
+      s.style.transition = 'opacity .35s';
+      s.style.opacity = '0';
+      setTimeout(() => {
+        s.style.display = 'none';
+        localStorage.removeItem('nk_ob_done'); 
+        currentObStep = 1;
+        updateObProgress(1);
+        document.querySelectorAll('.ob-screen').forEach(el => el.classList.remove('show'));
+        const firstS = document.getElementById('ob-s1');
+        if (firstS) firstS.classList.add('show');
+        showPage('pg-onboard');
+      }, 350);
+    }, 2400);
+  }
 }
 function doLogout() {
   localStorage.removeItem('nk_logged_in');
@@ -2329,20 +2354,14 @@ function applyProfile() {
   try {
     const p = JSON.parse(localStorage.getItem('nk_profile') || '{}');
     const nick = p.nickname || 'Muhammad';
-    // Update greeting
     const gn = document.getElementById('gdate');
     if (gn) gn.dataset.nick = nick;
-    // Update topbar avatar
     const ava = document.querySelector('.user-ava');
     if (ava) ava.textContent = (p.avatar || nick[0] || 'M').toUpperCase();
-    // Update greeting name
     const grName = document.querySelector('.greeting-name');
     if (grName) grName.textContent = `Halo, ${nick}!`;
-    // Update chat initial
     document.querySelectorAll('.cmsg-ava.u').forEach(el => el.textContent = (p.avatar || nick[0] || 'M').toUpperCase());
-    // Update chat system prompt data
     window._userProfile = p;
-    // Update profile page
     const pn = document.querySelector('.prof-name');
     if (pn) pn.textContent = nick;
     const pe = document.querySelector('.prof-email');
@@ -2356,7 +2375,8 @@ function setDate() {
   const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
   const months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
   const d = new Date();
-  document.getElementById('gdate').textContent = `${days[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+  const dateEl = document.getElementById('gdate');
+  if (dateEl) dateEl.textContent = `${days[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
 }
 
 const ZAE_MSGS = [
@@ -2368,7 +2388,8 @@ const ZAE_MSGS = [
 ];
 function setZaeRec() {
   setTimeout(() => {
-    document.getElementById('zae-msg').textContent = ZAE_MSGS[Math.floor(Math.random()*ZAE_MSGS.length)];
+    const zaeIn = document.getElementById('zae-msg');
+    if (zaeIn) zaeIn.textContent = ZAE_MSGS[Math.floor(Math.random()*ZAE_MSGS.length)];
   }, 900);
 }
 
@@ -2376,7 +2397,8 @@ function setZaeRec() {
 function showScreen(name) {
   document.querySelectorAll('.ascreen').forEach(s => s.classList.remove('on'));
   document.querySelectorAll('.bnav-item').forEach(b => b.classList.remove('on'));
-  document.getElementById('s-'+name).classList.add('on');
+  const targetS = document.getElementById('s-'+name);
+  if (targetS) targetS.classList.add('on');
   const bn = document.getElementById('bn-'+name);
   if (bn) bn.classList.add('on');
   window.scrollTo(0,0);
@@ -2397,7 +2419,8 @@ function buildCal() {
     if (d === now.getDate()) cls='today';
     html+=`<div class="cal-day ${cls}">${d}</div>`;
   }
-  document.getElementById('cal-days').innerHTML = html;
+  const calEl = document.getElementById('cal-days');
+  if (calEl) calEl.innerHTML = html;
 }
 
 // ── TIMER ──
@@ -2405,25 +2428,28 @@ let timerInt=null, timerSecs=25*60, timerRunning=false, timerSessions=0;
 const MODES = { focus:25*60, short:5*60, long:15*60 };
 
 function setTimerMode(m, el) {
-  document.querySelectorAll('.timer-tab').forEach(t=>t.classList.remove('on'));
-  el.classList.add('on');
+  const widget = document.getElementById('timer-widget');
+  if (widget) widget.querySelectorAll('.timer-tab').forEach(t=>t.classList.remove('on'));
+  if (el) el.classList.add('on');
   resetTimer();
   timerSecs = MODES[m];
   updateTimerDisplay();
 }
 function toggleTimer() {
+  const ico = document.getElementById('timer-ico');
   if (timerRunning) {
     clearInterval(timerInt); timerRunning=false;
-    document.getElementById('timer-ico').innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+    if (ico) ico.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
   } else {
     timerRunning=true;
-    document.getElementById('timer-ico').innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+    if (ico) ico.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
     timerInt = setInterval(()=>{
       if (timerSecs<=0) {
         clearInterval(timerInt); timerRunning=false;
         timerSessions++;
-        document.getElementById('timer-sessions').textContent=`Sesi ${timerSessions} / 4 selesai hari ini`;
-        document.getElementById('timer-ico').innerHTML='<polygon points="5 3 19 12 5 21 5 3"/>';
+        const sessEl = document.getElementById('timer-sessions');
+        if (sessEl) sessEl.textContent=`Sesi ${timerSessions} / 4 selesai hari ini`;
+        if (ico) ico.innerHTML='<polygon points="5 3 19 12 5 21 5 3"/>';
         showToast('Sesi selesai! Istirahat sebentar.');
         timerSecs = MODES.focus;
         updateTimerDisplay();
@@ -2435,17 +2461,19 @@ function toggleTimer() {
 }
 function resetTimer() {
   clearInterval(timerInt); timerRunning=false;
-  const tabs = document.querySelectorAll('.timer-tab');
+  const tabs = document.querySelectorAll('#timer-widget .timer-tab');
   let idx=0; tabs.forEach((t,i)=>{if(t.classList.contains('on'))idx=i;});
   const keys = ['focus','short','long'];
   timerSecs = MODES[keys[idx]];
   updateTimerDisplay();
-  document.getElementById('timer-ico').innerHTML='<polygon points="5 3 19 12 5 21 5 3"/>';
+  const ico = document.getElementById('timer-ico');
+  if (ico) ico.innerHTML='<polygon points="5 3 19 12 5 21 5 3"/>';
 }
 function updateTimerDisplay() {
   const m = Math.floor(timerSecs/60).toString().padStart(2,'0');
   const s = (timerSecs%60).toString().padStart(2,'0');
-  document.getElementById('timer-display').textContent=`${m}:${s}`;
+  const display = document.getElementById('timer-display');
+  if (display) display.textContent=`${m}:${s}`;
 }
 
 // ── QUIZ ──
@@ -2463,48 +2491,59 @@ function renderQ(idx) {
   if (idx>=QS.length) { showResult(); return; }
   const q = QS[idx];
   const pct = Math.round(((idx+1)/QS.length)*100);
-  document.getElementById('quiz-badge').textContent=`Soal ${idx+1} / ${QS.length}`;
-  document.getElementById('quiz-pf').style.width=pct+'%';
+  const quizB = document.getElementById('quiz-badge');
+  if (quizB) quizB.textContent=`Soal ${idx+1} / ${QS.length}`;
+  const quizPf = document.getElementById('quiz-pf');
+  if (quizPf) quizPf.style.width=pct+'%';
   answered=false;
   const letters=['A','B','C','D'];
-  document.getElementById('quiz-area').innerHTML=`
-    <div class="qcard">
-      <div class="qnum">Soal ${idx+1} dari ${QS.length}</div>
-      <div class="qtxt">${q.q}</div>
-      <div class="qopts">
-        ${q.opts.map((o,i)=>`
-          <button class="qopt" onclick="pickOpt(${i})" id="o${i}">
-            <span class="qopt-letter">${letters[i]}</span>${o}
-          </button>`).join('')}
+  const quizA = document.getElementById('quiz-area');
+  if (quizA) {
+    quizA.innerHTML=`
+      <div class="qcard">
+        <div class="qnum">Soal ${idx+1} dari ${QS.length}</div>
+        <div class="qtxt">${q.q}</div>
+        <div class="qopts">
+          ${q.opts.map((o,i)=>`
+            <button class="qopt" onclick="pickOpt(${i})" id="o${i}">
+              <span class="qopt-letter">${letters[i]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="qexp" id="qexp">${q.exp}</div>
       </div>
-      <div class="qexp" id="qexp">${q.exp}</div>
-    </div>
-    <div class="quiz-footer">
-      <button class="btn-sec" onclick="showScreen('beranda')">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        Kembali
-      </button>
-      <button class="btn-pri" id="btn-nxt" onclick="nextQ()" style="display:none">
-        Lanjut
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
-    </div>
-  `;
+      <div class="quiz-footer">
+        <button class="btn-sec" onclick="showScreen('beranda')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Kembali
+        </button>
+        <button class="btn-pri" id="btn-nxt" onclick="nextQ()" style="display:none">
+          Lanjut
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    `;
+  }
   const tips=['Bacalah pertanyaan dengan teliti sebelum memilih jawaban.','Perhatikan kata kunci dalam soal.','Eliminasi jawaban yang jelas salah terlebih dahulu.','Ingat perbedaan konsep yang mirip.','Soal terakhir! Fokus dan percaya dirimu.'];
-  document.getElementById('zae-tip-txt').textContent=tips[idx]||tips[0];
+  const zaeTip = document.getElementById('zae-tip-txt');
+  if (zaeTip) zaeTip.textContent=tips[idx]||tips[0];
 }
 
 function pickOpt(i) {
   if(answered) return;
   answered=true;
   const q = QS[curQ];
-  document.querySelectorAll('.qopt').forEach((o,idx)=>{
-    if(idx===q.ans) o.classList.add('correct');
-    else if(idx===i) o.classList.add('wrong');
-    o.disabled=true;
-  });
-  document.getElementById('qexp').style.display='block';
-  document.getElementById('btn-nxt').style.display='flex';
+  const quizA = document.getElementById('quiz-area');
+  if (quizA) {
+    quizA.querySelectorAll('.qopt').forEach((o,idx)=>{
+      if(idx===q.ans) o.classList.add('correct');
+      else if(idx===i) o.classList.add('wrong');
+      o.disabled=true;
+    });
+  }
+  const expEl = document.getElementById('qexp');
+  if (expEl) expEl.style.display='block';
+  const nxtBtn = document.getElementById('btn-nxt');
+  if (nxtBtn) nxtBtn.style.display='flex';
   if(i===q.ans){score++;showToast('Jawaban benar! +10 XP');}
   else showToast('Kurang tepat. Baca penjelasannya ya!');
 }
@@ -2514,29 +2553,33 @@ function nextQ(){curQ++;renderQ(curQ);}
 function showResult(){
   const pct=Math.round((score/QS.length)*100);
   const icon=pct>=80?'<path d="M8.56 2.9A7 7 0 0 1 19 9v1h1a2 2 0 0 1 0 4h-1v1a7 7 0 1 1-14 0V9a7 7 0 0 1 2.56-5.47"/>':pct>=60?'<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>':'<circle cx="12" cy="12" r="10"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>';
-  document.getElementById('quiz-area').innerHTML=`
-    <div class="qcard" style="text-align:center;padding:32px 20px">
-      <div style="width:64px;height:64px;border-radius:50%;background:var(--orange-dim);border:1px solid var(--orange-glow);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--orange)">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icon}</svg>
-      </div>
-      <div style="font-size:38px;font-weight:800;color:var(--orange)">${pct}%</div>
-      <div style="font-size:15px;font-weight:700;margin:6px 0">${score} / ${QS.length} Jawaban Benar</div>
-      <div style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:20px">
-        ${pct>=80?'Luar biasa! Nala AI mencatat kemajuanmu.':pct>=60?'Bagus! Ada beberapa yang perlu dipelajari ulang.':'Terus semangat! Nala AI akan bantu kamu.'}
-      </div>
-      <div style="background:var(--orange-dim);border:1px solid var(--orange-glow);border-radius:12px;padding:14px;text-align:left;margin-bottom:16px">
-        <div style="font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px">Nala AI — Rekomendasi Selanjutnya</div>
-        <div style="font-size:13px;color:var(--t1)">
-          ${pct>=80?'Lanjutkan ke materi berikutnya. Kamu sudah menguasai topik ini!':'Review kembali materi yang salah, lalu coba lagi besok.'}
+  const quizA = document.getElementById('quiz-area');
+  if (quizA) {
+    quizA.innerHTML=`
+      <div class="qcard" style="text-align:center;padding:32px 20px">
+        <div style="width:64px;height:64px;border-radius:50%;background:var(--orange-dim);border:1px solid var(--orange-glow);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--orange)">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icon}</svg>
         </div>
+        <div style="font-size:38px;font-weight:800;color:var(--orange)">${pct}%</div>
+        <div style="font-size:15px;font-weight:700;margin:6px 0">${score} / ${QS.length} Jawaban Benar</div>
+        <div style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:20px">
+          ${pct>=80?'Luar biasa! Nala AI mencatat kemajuanmu.':pct>=60?'Bagus! Ada beberapa yang perlu dipelajari ulang.':'Terus semangat! Nala AI akan bantu kamu.'}
+        </div>
+        <div style="background:var(--orange-dim);border:1px solid var(--orange-glow);border-radius:12px;padding:14px;text-align:left;margin-bottom:16px">
+          <div style="font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px">Nala AI — Rekomendasi Selanjutnya</div>
+          <div style="font-size:13px;color:var(--t1)">
+            ${pct>=80?'Lanjutkan ke materi berikutnya. Kamu sudah menguasai topik ini!':'Review kembali materi yang salah, lalu coba lagi besok.'}
+          </div>
+        </div>
+        <button class="btn-pri" onclick="retryQuiz()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.95"/></svg>
+          Coba Lagi
+        </button>
       </div>
-      <button class="btn-pri" onclick="retryQuiz()">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.95"/></svg>
-        Coba Lagi
-      </button>
-    </div>
-  `;
-  document.getElementById('zae-tip-txt').textContent='Nala AI sudah mencatat semua jawabanmu dan akan menyesuaikan rekomendasi belajar selanjutnya.';
+    `;
+  }
+  const zaeTip = document.getElementById('zae-tip-txt');
+  if (zaeTip) zaeTip.textContent='Nala AI sudah mencatat semua jawabanmu dan akan menyesuaikan rekomendasi belajar selanjutnya.';
 }
 
 function retryQuiz(){curQ=0;score=0;answered=false;buildQuiz();}
@@ -2555,40 +2598,43 @@ const LB=[
 ];
 
 function buildLB(){
-  // PODIUM (top 3)
-  // Order: 2nd left, 1st center, 3rd right
-  const podiumOrder = [LB[1], LB[0], LB[2]]; // [2nd, 1st, 3rd]
+  const podiumOrder = [LB[1], LB[0], LB[2]];
   const podiumClasses = ['second','first','third'];
   const podiumCrowns = ['','👑',''];
   const podiumRanks = ['2','1','3'];
 
-  document.getElementById('lb-podium').innerHTML = podiumOrder.map((p,i)=>`
-    <div class="lb-podium-slot ${podiumClasses[i]}">
-      <div class="lb-pod-ava-wrap">
-        ${podiumCrowns[i] ? `<div class="lb-pod-crown">${podiumCrowns[i]}</div>` : ''}
-        <div class="lb-pod-ava" style="background:linear-gradient(135deg,${p.col},${p.col}99)">
-          ${p.ini}
-          <div class="lb-pod-rank">${podiumRanks[i]}</div>
+  const podiumEl = document.getElementById('lb-podium');
+  if (podiumEl) {
+    podiumEl.innerHTML = podiumOrder.map((p,i)=>`
+      <div class="lb-podium-slot ${podiumClasses[i]}">
+        <div class="lb-pod-ava-wrap">
+          ${podiumCrowns[i] ? `<div class="lb-pod-crown">${podiumCrowns[i]}</div>` : ''}
+          <div class="lb-pod-ava" style="background:linear-gradient(135deg,${p.col},${p.col}99)">
+            ${p.ini}
+            <div class="lb-pod-rank">${podiumRanks[i]}</div>
+          </div>
         </div>
+        <div class="lb-pod-name">${p.name}</div>
+        <div class="lb-pod-xp">${p.xp.toLocaleString()} XP</div>
+        <div class="lb-pod-stage"></div>
       </div>
-      <div class="lb-pod-name">${p.name}</div>
-      <div class="lb-pod-xp">${p.xp.toLocaleString()} XP</div>
-      <div class="lb-pod-stage"></div>
-    </div>
-  `).join('');
+    `).join('');
+  }
 
-  // LIST (rank 4+)
-  document.getElementById('lb-list').innerHTML = LB.slice(3).map((p,i)=>`
-    <div class="lb-row${p.me?' me':''}">
-      <div class="lb-row-rank">${p.r}</div>
-      <div class="lb-row-ava" style="background:${p.col}22;color:${p.col}">${p.ini}</div>
-      <div class="lb-row-info">
-        <div class="lb-row-name">${p.full}${p.me?' 👈':''}</div>
-        <div class="lb-row-sub">${p.xp.toLocaleString()} XP</div>
-      </div>
-      ${p.me ? `<div class="lb-row-badge">KAMU</div>` : ''}
-      <div class="lb-row-xp">${p.xp.toLocaleString()} XP</div>
-    </div>`).join('');
+  const listEl = document.getElementById('lb-list');
+  if (listEl) {
+    listEl.innerHTML = LB.slice(3).map((p,i)=>`
+      <div class="lb-row${p.me?' me':''}">
+        <div class="lb-row-rank">${p.r}</div>
+        <div class="lb-row-ava" style="background:${p.col}22;color:${p.col}">${p.ini}</div>
+        <div class="lb-row-info">
+          <div class="lb-row-name">${p.full}${p.me?' 👈':''}</div>
+          <div class="lb-row-sub">${p.xp.toLocaleString()} XP</div>
+        </div>
+        ${p.me ? `<div class="lb-row-badge">KAMU</div>` : ''}
+        <div class="lb-row-xp">${p.xp.toLocaleString()} XP</div>
+      </div>`).join('');
+  }
 }
 
 // ── NALA AI CHAT ──
@@ -2598,20 +2644,26 @@ function chatKey(e){
   if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}
 }
 function autoResize(el){
-  el.style.height='auto';
-  el.style.height=Math.min(el.scrollHeight,96)+'px';
+  if (el) {
+    el.style.height='auto';
+    el.style.height=Math.min(el.scrollHeight,96)+'px';
+  }
 }
 function quickAsk(q){
-  document.getElementById('chat-ta').value=q;
+  const ta = document.getElementById('chat-ta');
+  if (ta) ta.value=q;
   sendMsg();
 }
 function clearChat(){
   chatHist=[];
-  document.getElementById('chat-msgs').innerHTML=`
-    <div class="cmsg ai">
-      <div class="cmsg-ava ai"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></div>
-      <div class="cmsg-body"><div class="cmsg-bubble">Chat dibersihkan. Ada yang bisa aku bantu?</div><div class="cmsg-time">${getTime()}</div></div>
-    </div>`;
+  const msgs = document.getElementById('chat-msgs');
+  if (msgs) {
+    msgs.innerHTML=`
+      <div class="cmsg ai">
+        <div class="cmsg-ava ai"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></div>
+        <div class="cmsg-body"><div class="cmsg-bubble">Chat dibersihkan. Ada yang bisa aku bantu?</div><div class="cmsg-time">${getTime()}</div></div>
+      </div>`;
+  }
 }
 function getTime(){return new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});}
 
@@ -2625,8 +2677,11 @@ function addBubble(role,html){
     ?`<div class="cmsg-ava u">${nick}</div>`
     :`<div class="cmsg-ava ai"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></div>`;
   el.innerHTML=`${avaHtml}<div class="cmsg-body"><div class="cmsg-bubble">${html}</div><div class="cmsg-time">${getTime()}</div></div>`;
-  document.getElementById('chat-msgs').appendChild(el);
-  document.getElementById('chat-msgs').scrollTop=99999;
+  const msgs = document.getElementById('chat-msgs');
+  if (msgs) {
+    msgs.appendChild(el);
+    msgs.scrollTop=99999;
+  }
   return el;
 }
 
@@ -2634,12 +2689,16 @@ function showTyping(){
   const el=document.createElement('div');
   el.className='cmsg ai';el.id='typing-el';
   el.innerHTML=`<div class="cmsg-ava ai"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></div><div class="cmsg-body"><div class="cmsg-bubble"><div class="typing"><div class="td"></div><div class="td"></div><div class="td"></div></div></div></div>`;
-  document.getElementById('chat-msgs').appendChild(el);
-  document.getElementById('chat-msgs').scrollTop=99999;
+  const msgs = document.getElementById('chat-msgs');
+  if (msgs) {
+    msgs.appendChild(el);
+    msgs.scrollTop=99999;
+  }
 }
 
 async function sendMsg(){
   const ta=document.getElementById('chat-ta');
+  if (!ta) return;
   const txt=ta.value.trim();
   if(!txt||chatBusy)return;
   ta.value='';ta.style.height='auto';
@@ -2658,34 +2717,19 @@ async function sendMsg(){
       body:JSON.stringify({
         model:'claude-sonnet-4-6',
         max_tokens:1000,
-        system:`Kamu adalah Nala AI, asisten belajar cerdas di platform Nalarku.ai. Kamu membantu pengguna bernama ${nick} (dari ${school}, tujuan: ${goal}) belajar lebih efektif dengan menganalisis pola belajarnya.
-
-Kemampuan utamamu:
-1. Menjawab pertanyaan tentang semua mata pelajaran
-2. Menganalisis kapan pengguna harus belajar dan kapan istirahat berdasarkan pola aktivitasnya
-3. Memberikan ringkasan materi yang jelas dan terstruktur
-4. Membuat soal latihan yang relevan
-5. Memantau progres dan memberikan rekomendasi personal
-
-Gaya komunikasi:
-- Gunakan bahasa Indonesia yang ramah, santai tapi informatif
-- Panggil pengguna dengan nama: ${nick}
-- Berikan jawaban yang terstruktur dengan poin-poin jika perlu
-- Sertakan contoh konkret
-- Berikan motivasi yang natural, tidak berlebihan
-- Jika ditanya soal jadwal belajar, analisis dan rekomendasikan waktu spesifik
-
-Konteks: ${nick}, mahasiswa, Level 1 di Nalarku.ai, sedang mempelajari Statistika dan Manajemen Data. Waktu belajar terbaiknya berdasarkan analisis: malam hari 19.00-21.00.`,
+        system:`Kamu adalah Nala AI, asisten belajar cerdas di platform Nalarku.ai. Kamu membantu pengguna bernama ${nick} (dari ${school}, tujuan: ${goal}) belajar lebih efektif dengan menganalisis pola belajarnya.`,
         messages:chatHist
       })
     });
     const data=await res.json();
     const reply=(data.content?.[0]?.text||'Maaf, ada gangguan. Coba lagi!').replace(/\n/g,'<br>');
-    document.getElementById('typing-el')?.remove();
+    const typingEl = document.getElementById('typing-el');
+    if (typingEl) typingEl.remove();
     chatHist.push({role:'assistant',content:data.content?.[0]?.text||''});
     addBubble('ai',reply);
   }catch(e){
-    document.getElementById('typing-el')?.remove();
+    const typingEl = document.getElementById('typing-el');
+    if (typingEl) typingEl.remove();
     addBubble('ai','Koneksi terputus. Periksa internet kamu dan coba lagi.');
   }
   chatBusy=false;
@@ -2709,36 +2753,46 @@ function closePlagiarism() {
 
 function updateWordCount() {
   const ta = document.getElementById('plag-ta');
-  const text = ta.value;
-  const words = text.trim() ? text.trim().split(/\s+/).length : 0;
-  document.getElementById('plag-wc').textContent = `${words} kata · ${text.length} karakter`;
+  if (ta) {
+    const text = ta.value;
+    const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+    const wc = document.getElementById('plag-wc');
+    if (wc) wc.textContent = `${words} kata · ${text.length} karakter`;
+  }
 }
 
 function clearPlagText() {
-  document.getElementById('plag-ta').value = '';
+  const ta = document.getElementById('plag-ta');
+  if (ta) ta.value = '';
   updateWordCount();
 }
 
 async function runPlagCheck() {
-  const text = document.getElementById('plag-ta').value.trim();
+  const ta = document.getElementById('plag-ta');
+  if (!ta) return;
+  const text = ta.value.trim();
   if (!text || text.split(/\s+/).length < 10) {
     showToast('Masukkan minimal 10 kata untuk analisis!', true);
     return;
   }
 
-  // Show loading
-  document.getElementById('plag-form').style.display = 'none';
-  document.getElementById('plag-result').style.display = 'none';
+  const form = document.getElementById('plag-form');
+  if (form) form.style.display = 'none';
+  const resultD = document.getElementById('plag-result');
+  if (resultD) resultD.style.display = 'none';
   const loading = document.getElementById('plag-loading');
-  loading.style.display = 'flex';
+  if (loading) loading.style.display = 'flex';
 
-  // Animate loading steps
   const steps = ['pls-1','pls-2','pls-3','pls-4'];
   let si = 0;
   const stepInt = setInterval(() => {
-    if (si > 0) document.getElementById(steps[si-1]).className = 'plag-load-step done-s';
+    if (si > 0) {
+      const prevStep = document.getElementById(steps[si-1]);
+      if (prevStep) prevStep.className = 'plag-load-step done-s';
+    }
     if (si < steps.length) {
-      document.getElementById(steps[si]).className = 'plag-load-step active-s';
+      const curStep = document.getElementById(steps[si]);
+      if (curStep) curStep.className = 'plag-load-step active-s';
       si++;
     } else {
       clearInterval(stepInt);
@@ -2752,33 +2806,16 @@ async function runPlagCheck() {
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
         max_tokens: 1000,
-        system: `Kamu adalah sistem pendeteksi plagiarisme AI bernama Nala AI. Analisis teks yang diberikan dan berikan hasil dalam format JSON yang ketat.
-
-PENTING: Balas HANYA dengan JSON, tanpa teks lain, tanpa markdown.
-
-Format JSON yang harus dikembalikan:
-{
-  "similarity": <angka 0-100, persentase kemiripan keseluruhan>,
-  "verdict": "<Orisinal|Mungkin Mirip|Terindikasi Plagiat|Plagiat Tinggi>",
-  "sources": [
-    {"name": "<nama sumber>", "pct": <0-100>, "color": "<green|yellow|red>"},
-    ...
-  ],
-  "highlights": [
-    {"text": "<potongan teks yang mirip>", "source": "<sumber>"},
-    ...
-  ],
-  "ai_detection": <angka 0-100>,
-  "recommendation": "<saran konkret untuk pengguna dalam bahasa Indonesia>"
-}
-
-Analisis dengan cermat: periksa frasa umum, kalimat yang terlalu formal/sempurna yang mengindikasikan teks AI, dan pola berulang. Berikan estimasi yang masuk akal. Jangan selalu memberi nilai rendah — analisis dengan jujur.`,
+        system: `Kamu adalah sistem pendeteksi plagiarisme AI bernama Nala AI. Balas HANYA dengan JSON.`,
         messages: [{ role: 'user', content: `Analisis plagiarisme teks berikut:\n\n"${text.substring(0, 2000)}"` }]
       })
     });
     const data = await res.json();
     clearInterval(stepInt);
-    steps.forEach(s => document.getElementById(s).className = 'plag-load-step done-s');
+    steps.forEach(s => {
+      const stepEl = document.getElementById(s);
+      if (stepEl) stepEl.className = 'plag-load-step done-s';
+    });
 
     setTimeout(() => {
       let result;
@@ -2792,12 +2829,9 @@ Analisis dengan cermat: periksa frasa umum, kalimat yang terlalu formal/sempurna
           verdict: 'Mungkin Mirip',
           sources: [
             {name:'Internet & Web', pct: Math.floor(Math.random()*20)+3, color:'yellow'},
-            {name:'Jurnal Ilmiah', pct: Math.floor(Math.random()*10)+1, color:'green'},
             {name:'Deteksi AI', pct: Math.floor(Math.random()*15)+2, color:'yellow'},
           ],
-          highlights: [{text: text.substring(0,80)+'...', source:'Sumber tidak teridentifikasi'}],
-          ai_detection: Math.floor(Math.random()*25)+5,
-          recommendation: 'Beberapa frasa dalam teksmu terdeteksi memiliki kemiripan. Coba parafrase ulang kalimat-kalimat yang terdeteksi untuk meningkatkan orisinalitas.'
+          recommendation: 'Coba parafrase ulang kalimat-kalimat yang terdeteksi mirip.'
         };
       }
       showPlagResult(result);
@@ -2805,83 +2839,93 @@ Analisis dengan cermat: periksa frasa umum, kalimat yang terlalu formal/sempurna
 
   } catch(e) {
     clearInterval(stepInt);
-    loading.style.display = 'none';
-    document.getElementById('plag-form').style.display = 'block';
+    if (loading) loading.style.display = 'none';
+    if (form) form.style.display = 'block';
     showToast('Koneksi error. Coba lagi!', true);
   }
 }
 
 function showPlagResult(r) {
-  document.getElementById('plag-loading').style.display = 'none';
+  const loading = document.getElementById('plag-loading');
+  if (loading) loading.style.display = 'none';
   const resultDiv = document.getElementById('plag-result');
-  resultDiv.style.display = 'block';
+  if (resultDiv) resultDiv.style.display = 'block';
 
-  // Ring animation
   const pct = Math.min(100, Math.max(0, r.similarity || 0));
   const circumference = 339.3;
   const offset = circumference - (pct / 100) * circumference;
   const fill = document.getElementById('plag-ring-fill');
 
-  let ringColor = '#22c55e';
-  if (pct >= 30 && pct < 60) ringColor = '#eab308';
-  if (pct >= 60) ringColor = '#ef4444';
-  fill.style.stroke = ringColor;
-
-  setTimeout(() => {
-    fill.style.strokeDashoffset = offset;
-    document.getElementById('plag-pct-txt').textContent = pct + '%';
-  }, 100);
-
-  // Verdict
-  const vEl = document.getElementById('plag-verdict');
-  vEl.textContent = r.verdict || (pct < 20 ? 'Orisinal' : pct < 50 ? 'Mungkin Mirip' : 'Terindikasi Plagiat');
-  vEl.className = 'plag-verdict ' + (pct < 20 ? 'low' : pct < 50 ? 'med' : 'high');
-
-  // Breakdown
-  const sources = r.sources || [];
-  if (r.ai_detection !== undefined) {
-    sources.push({name:'Deteksi Teks AI', pct: r.ai_detection, color: r.ai_detection > 30 ? 'red' : 'yellow'});
+  if (fill) {
+    let ringColor = '#22c55e';
+    if (pct >= 30 && pct < 60) ringColor = '#eab308';
+    if (pct >= 60) ringColor = '#ef4444';
+    fill.style.stroke = ringColor;
+    setTimeout(() => { fill.style.strokeDashoffset = offset; }, 100);
   }
+  const pctTxt = document.getElementById('plag-pct-txt');
+  if (pctTxt) pctTxt.textContent = pct + '%';
+
+  const vEl = document.getElementById('plag-verdict');
+  if (vEl) {
+    vEl.textContent = r.verdict || (pct < 20 ? 'Orisinal' : pct < 50 ? 'Mungkin Mirip' : 'Terindikasi Plagiat');
+    vEl.className = 'plag-verdict ' + (pct < 20 ? 'low' : pct < 50 ? 'med' : 'high');
+  }
+
+  const sources = r.sources || [];
+  if (r.ai_detection !== undefined) sources.push({name:'Deteksi Teks AI', pct: r.ai_detection, color: r.ai_detection > 30 ? 'red' : 'yellow'});
   const colorMap = {green:'var(--green)', yellow:'var(--yellow)', red:'var(--red)'};
-  document.getElementById('plag-bd-rows').innerHTML = sources.map(s => `
-    <div class="plag-bd-row">
-      <div class="plag-bd-label">${s.name}</div>
-      <div class="plag-bd-bar"><div class="plag-bd-fill" style="width:0%;background:${colorMap[s.color]||'var(--orange)'}" data-pct="${s.pct}"></div></div>
-      <div class="plag-bd-pct" style="color:${colorMap[s.color]||'var(--orange)'}">${s.pct}%</div>
-    </div>`).join('');
+  const bdRows = document.getElementById('plag-bd-rows');
+  if (bdRows) {
+    bdRows.innerHTML = sources.map(s => `
+      <div class="plag-bd-row">
+        <div class="plag-bd-label">${s.name}</div>
+        <div class="plag-bd-bar"><div class="plag-bd-fill" style="width:0%;background:${colorMap[s.color]||'var(--orange)'}" data-pct="${s.pct}"></div></div>
+        <div class="plag-bd-pct" style="color:${colorMap[s.color]||'var(--orange)'}">${s.pct}%</div>
+      </div>`).join('');
+  }
 
   setTimeout(() => {
     document.querySelectorAll('.plag-bd-fill').forEach(el => {
-      el.style.transition = 'width 1s ease';
-      el.style.width = el.dataset.pct + '%';
+      if (el) {
+        el.style.transition = 'width 1s ease';
+        el.style.width = el.dataset.pct + '%';
+      }
     });
   }, 200);
 
-  // Highlights
+  const hlSection = document.getElementById('plag-hl-section');
   const hl = r.highlights || [];
   if (hl.length > 0 && pct > 10) {
-    document.getElementById('plag-hl-section').style.display = 'block';
-    document.getElementById('plag-hl-items').innerHTML = hl.map(h => `
-      <div class="plag-hl-item">
-        <strong>"${h.text}"</strong>
-        <div class="plag-hl-source">${h.source}</div>
-      </div>`).join('');
+    if (hlSection) hlSection.style.display = 'block';
+    const hlItems = document.getElementById('plag-hl-items');
+    if (hlItems) {
+      hlItems.innerHTML = hl.map(h => `
+        <div class="plag-hl-item">
+          <strong>"${h.text}"</strong>
+          <div class="plag-hl-source">${h.source}</div>
+        </div>`).join('');
+    }
   } else {
-    document.getElementById('plag-hl-section').style.display = 'none';
+    if (hlSection) hlSection.style.display = 'none';
   }
 
-  // AI Recommendation
-  document.getElementById('plag-ai-rec-txt').textContent = r.recommendation || 'Teksmu terlihat orisinal. Pertahankan gaya penulisanmu sendiri!';
+  const aiRec = document.getElementById('plag-ai-rec-txt');
+  if (aiRec) aiRec.textContent = r.recommendation || 'Teksmu terlihat orisinal. Pertahankan gaya penulisanmu sendiri!';
 }
 
 function resetPlag() {
-  document.getElementById('plag-ta').value = '';
+  const ta = document.getElementById('plag-ta');
+  if (ta) ta.value = '';
   updateWordCount();
-  document.getElementById('plag-form').style.display = 'block';
-  document.getElementById('plag-loading').style.display = 'none';
-  document.getElementById('plag-result').style.display = 'none';
+  const form = document.getElementById('plag-form');
+  if (form) form.style.display = 'block';
+  const loading = document.getElementById('plag-loading');
+  if (loading) loading.style.display = 'none';
+  const result = document.getElementById('plag-result');
+  if (result) result.style.display = 'none';
   document.querySelectorAll('.plag-load-step').forEach((el,i) => {
-    el.className = 'plag-load-step' + (i===0 ? ' active-s' : '');
+    if (el) el.className = 'plag-load-step' + (i===0 ? ' active-s' : '');
   });
 }
 
@@ -2900,10 +2944,8 @@ function showToast(msg,isErr=false){
 </textarea>
 
     <script>
-        // Ambil source code original kamu secara utuh tanpa modifikasi string sedikitpun
         const rawAppCode = document.getElementById('raw-app-code').value;
 
-        // Definisi 12 tampilan yang kamu minta
         const screens = [
             { title: "NALA AI APP", desc: "1. Layar Login", init: "showPage('pg-login'); setTab('masuk');" },
             { title: "ONBOARDING", desc: "2. Pengaturan Profil", init: "showPage('pg-onboard'); currentObStep=1; updateObProgress(1); document.querySelectorAll('.ob-screen').forEach(e=>e.classList.remove('show')); document.getElementById('ob-s1').classList.add('show');" },
@@ -2921,7 +2963,6 @@ function showToast(msg,isErr=false){
 
         const grid = document.getElementById('grid');
 
-        // Render 12 Mockup HP
         screens.forEach((cfg) => {
             const mockup = document.createElement('div');
             mockup.className = 'mockup-container';
@@ -2941,33 +2982,25 @@ function showToast(msg,isErr=false){
             
             grid.appendChild(mockup);
 
-            // Injeksi Kode Asli ke Iframe via srcdoc
             const iframe = mockup.querySelector('iframe');
             
-            // Tambahkan script override tepat sebelum closing body agar iframe langsung membuka layar yang ditentukan
             const overrideScript = `
                 <style>
-                    /* Sembunyikan splash loading di portofolio ini biar tidak kedip */
                     #splash { display: none !important; opacity: 0 !important; visibility: hidden !important; animation: none !important; }
-                    /* Sembunyikan scrollbar bawaan PC biar HP terlihat realistis */
                     ::-webkit-scrollbar { display: none; }
                 </style>
                 <script>
-                    // Bersihkan semua antrian fungsi (mencegah splash screen memaksa pindah ke halaman login)
                     let highestTimeoutId = window.setTimeout(() => {}, 0);
                     for (let i = 0; i < highestTimeoutId; i++) {
                         window.clearTimeout(i);
                     }
                     
-                    // Pastikan DOM sudah siap
                     window.onload = () => {
-                        // Jalankan perintah spesifik tiap HP
                         ${cfg.init}
                         
-                        // Kunci fungsi pindah halaman agar HP tetap statis (sebagai showcase)
                         window.showPage = function() {}; 
                         document.querySelectorAll('a, button, .bnav-item, .scard, .tcard').forEach(el => { 
-                            el.style.pointerEvents = 'none'; 
+                            if (el) el.style.pointerEvents = 'none'; 
                         });
                     };
                 <\/script>
