@@ -32,7 +32,7 @@
         font-size: 18px;
     }
     
-    /* GRID UNTUK MENGATUR HP BERJEJER */
+    /* GRID UNTUK MENGATUR 12 HP BERJEJER */
     .grid {
         display: flex;
         flex-wrap: wrap;
@@ -47,10 +47,10 @@
         flex-direction: column;
         align-items: center;
         gap: 24px;
-        width: 375px; /* Sesuai standar lebar HP */
+        width: 375px; 
     }
 
-    /* LABEL PUTIH DI ATAS HP (Seperti di screenshot) */
+    /* LABEL PUTIH DI ATAS HP */
     .mockup-label {
         background: #ffffff;
         border-radius: 99px;
@@ -79,7 +79,7 @@
     .phone-frame {
         width: 375px;
         height: 812px;
-        background: #111827; /* Warna casing HP */
+        background: #111827;
         border-radius: 44px;
         padding: 14px;
         box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
@@ -1452,7 +1452,7 @@ button,input,textarea,select{font-family:'Plus Jakarta Sans',sans-serif;}
       </div>
       <div class="ob-field">
         <label>Ceritakan motivasi belajarmu (opsional)</label>
-        <textarea class="ob-input no-ico" id="ob-motivation" style="padding:12px;resize:none;min-height:70px;line-height:1.5" placeholder="contoh: Saya ingin lulus cum laude dan bekerja di perusahaan impian..."></textarea>
+        <textarea class="ob-input no-ico" id="ob-motivation" style="padding:12px;resize:none;min-height:70px;line-height:1.5" placeholder="contoh: Saya ingin lulus cum laude dan bekerja di perusahaan impian...">&lt;/textarea&gt;
       </div>
       <div class="ob-footer">
         <button class="ob-btn-back" onclick="obBack(4)">
@@ -1460,7 +1460,7 @@ button,input,textarea,select{font-family:'Plus Jakarta Sans',sans-serif;}
           Kembali
         </button>
         <button class="ob-btn-next" onclick="finishOnboard()">
-          Selesai & Mulai Belajar
+          Selesai & Simpan
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
       </div>
@@ -1472,9 +1472,9 @@ button,input,textarea,select{font-family:'Plus Jakarta Sans',sans-serif;}
         <h2 id="ob-welcome-title">Selamat datang!</h2>
         <p id="ob-welcome-sub">Profil kamu sudah siap. Nala AI akan mempelajari pola belajarmu dari sekarang.</p>
         <div id="ob-summary"></div>
-        <button class="ob-btn-next" style="margin-top:20px;max-width:300px;margin-left:auto;margin-right:auto" onclick="goToLogin()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-          Lanjut ke Login
+        <button class="ob-btn-next" style="margin-top:20px;max-width:300px;margin-left:auto;margin-right:auto" onclick="goToDashboard()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Masuk ke Dashboard
         </button>
       </div>
     </div>
@@ -1506,7 +1506,7 @@ button,input,textarea,select{font-family:'Plus Jakarta Sans',sans-serif;}
     <div id="plag-form">
       <div class="plag-input-wrap">
         <div class="plag-input-label">Teks yang Akan Dicek</div>
-        <textarea class="plag-ta" id="plag-ta" placeholder="Tempelkan atau ketik teks yang ingin kamu cek plagiarismenya di sini..." oninput="updateWordCount()"></textarea>
+        <textarea class="plag-ta" id="plag-ta" placeholder="Tempelkan atau ketik teks yang ingin kamu cek plagiarismenya di sini..." oninput="updateWordCount()">&lt;/textarea&gt;
         <div class="plag-meta">
           <span class="plag-count" id="plag-wc">0 kata · 0 karakter</span>
           <button class="plag-clear" onclick="clearPlagText()">Hapus Teks</button>
@@ -1994,7 +1994,7 @@ button,input,textarea,select{font-family:'Plus Jakarta Sans',sans-serif;}
             <button class="sug-btn" onclick="quickAsk('Evaluasi progres belajarku minggu ini')">Evaluasi progres</button>
           </div>
           <div class="chat-input-row">
-            <textarea class="chat-ta" id="chat-ta" placeholder="Tanya Nala AI apa saja..." rows="1" onkeydown="chatKey(event)" oninput="autoResize(this)"></textarea>
+            <textarea class="chat-ta" id="chat-ta" placeholder="Tanya Nala AI apa saja..." rows="1" onkeydown="chatKey(event)" oninput="autoResize(this)">&lt;/textarea&gt;
             <button class="chat-send" onclick="sendMsg()">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
             </button>
@@ -2941,28 +2941,35 @@ function showToast(msg,isErr=false){
             
             grid.appendChild(mockup);
 
-            // Injeksi Kode Asli ke Iframe via srcdoc (Lebih aman dari document.write)
+            // Injeksi Kode Asli ke Iframe via srcdoc
             const iframe = mockup.querySelector('iframe');
             
             // Tambahkan script override tepat sebelum closing body agar iframe langsung membuka layar yang ditentukan
             const overrideScript = `
                 <style>
                     /* Sembunyikan splash loading di portofolio ini biar tidak kedip */
-                    #splash { display: none !important; opacity: 0 !important; }
+                    #splash { display: none !important; opacity: 0 !important; visibility: hidden !important; animation: none !important; }
                     /* Sembunyikan scrollbar bawaan PC biar HP terlihat realistis */
                     ::-webkit-scrollbar { display: none; }
                 </style>
                 <script>
-                    setTimeout(() => {
+                    // Bersihkan semua antrian fungsi (mencegah splash screen memaksa pindah ke halaman login)
+                    let highestTimeoutId = window.setTimeout(() => {}, 0);
+                    for (let i = 0; i < highestTimeoutId; i++) {
+                        window.clearTimeout(i);
+                    }
+                    
+                    // Pastikan DOM sudah siap
+                    window.onload = () => {
                         // Jalankan perintah spesifik tiap HP
                         ${cfg.init}
                         
-                        // Kunci fungsi pindah halaman agar HP tetap di layar ini saat di-klik (sebagai display)
+                        // Kunci fungsi pindah halaman agar HP tetap statis (sebagai showcase)
                         window.showPage = function() {}; 
                         document.querySelectorAll('a, button, .bnav-item, .scard, .tcard').forEach(el => { 
                             el.style.pointerEvents = 'none'; 
                         });
-                    }, 50);
+                    };
                 <\/script>
                 </body>
             `;
